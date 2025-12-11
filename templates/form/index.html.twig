@@ -1,20 +1,321 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello FormController!{% endblock %}
+{% block title %}La Table de Réservation{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    {#
+    Le bloc <style> d'exemple a été retiré.
+    Le CSS du formulaire est maintenant géré par le fichier SCSS compilé
+    (assurez-vous que 'base.html.twig' inclut bien la feuille de style principale,
+    par exemple via Encore/asset()).
+    #}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/var/www/sae301/src/Controller/FormController.php</code></li>
-        <li>Your template at <code>/var/www/sae301/templates/form/index.html.twig</code></li>
-    </ul>
-</div>
+    <div class="header-container">
+        <h1 id="dynamic-title">Réservation</h1>
+        <p class="intro" id="dynamic-greeting">Bienvenue à notre table.</p>
+    </div>
+
+    <div class="wrapper">
+        <div class="success-message" id="successMessage">
+            <span class="success-icon">👨‍🍳</span>
+            <h2 style="font-family:'Playfair Display', serif; color:var(--primary);">C'est noté !</h2>
+            <p style="font-size:1.2rem;">Votre commande a été envoyée en cuisine.</p>
+            <p>Nous vous confirmerons la réservation par téléphone très bientôt.</p>
+            <button class="btn-restart" onclick="location.reload()">Nouvelle réservation</button>
+        </div>
+
+        <div class="main-form" id="mainFormContainer">
+            <form id="reservationForm" action="#" method="post">
+                <fieldset>
+                    <legend>Vos Coordonnées</legend>
+                    <div class="form-group">
+                        <label for="fullname">Nom du Convive <span class="required-mark">*</span></label>
+                        <input type="text" id="fullname" name="fullname" required placeholder="Monsieur / Madame...">
+                    </div>
+                    <div class="grid-row">
+                        <div class="form-group">
+                            <label for="email">Courriel <span class="required-mark">*</span></label>
+                            <input type="email" id="email" name="email" required placeholder="Pour la confirmation">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Téléphone <span class="required-mark">*</span></label>
+                            <input type="tel" id="phone" name="phone" required placeholder="06 00 00 00 00">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>La Mise en Place</legend>
+                    <div class="grid-row">
+                        <div class="form-group">
+                            <label for="date-rdv">Date <span class="required-mark">*</span></label>
+                            <input type="datetime-local" id="date-rdv" name="date_rdv" required>
+                            <span id="date-error" class="error-message"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="guests">Couverts <span class="required-mark">*</span></label>
+                            <input type="number" id="guests" name="guests" min="1" value="2" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service-type">Formule <span class="required-mark">*</span></label>
+                        <select id="service-type" name="service_type" required>
+                            <option value="">-- Choix du Menu --</option>
+                            <option value="Menu Complet">Menu Complet (85€)</option>
+                            <option value="Le Gourmand">Le Gourmand (60€)</option>
+                            <option value="Le Brunch">Le Brunch (50€)</option>
+                        </select>
+
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="wine-option" name="wine_option">
+                            <label for="wine-option">
+                                Ajouter l'Accord Mets & Vins
+                                <span class="price-tag">(+25€ / pers)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">Salle / Lieu <span class="required-mark">*</span></label>
+                        <input type="text" id="location" name="location" required>
+                    </div>
+                </fieldset>
+
+                <details>
+                    <summary>Le Petit Plus (Optionnel)</summary>
+                    <div class="details-content">
+                        <div class="grid-row">
+                            <div class="form-group">
+                                <label for="allergies">Allergies</label>
+                                <input type="text" id="allergies" name="allergies" placeholder="Ex: Arachides, Gluten...">
+                            </div>
+                            <div class="form-group">
+                                <label for="diet">Régime alimentaire</label>
+                                <input type="text" id="diet" name="diet" placeholder="Ex: Végétarien, Vegan...">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="comments">Commentaires supplémentaires</label>
+                            <textarea id="comments" name="comments" rows="2" placeholder="Anniversaire, table isolée..."></textarea>
+                        </div>
+                    </div>
+                </details>
+
+                <button type="submit" id="submitBtn">Envoyer en cuisine</button>
+            </form>
+        </div>
+
+        <div class="ticket-sidebar" id="ticketSidebar">
+            <div class="ticket" id="theTicket">
+                <div class="stamp-overlay">EN CUISINE</div>
+
+                <h3>Bon de Commande</h3>
+                <div class="ticket-content">
+                    <div class="ticket-row">
+                        <span class="ticket-label">Client:</span>
+                        <span class="ticket-value" id="ticket-name">---</span>
+                    </div>
+                    <div class="ticket-row">
+                        <span class="ticket-label">Tel:</span>
+                        <span class="ticket-value" id="ticket-phone">---</span>
+                    </div>
+                    <div class="ticket-row">
+                        <span class="ticket-label">Date:</span>
+                        <span class="ticket-value" id="ticket-date">---</span>
+                    </div>
+                    <div class="ticket-row">
+                        <span class="ticket-label">Couverts:</span>
+                        <span class="ticket-value" id="ticket-guests">2</span>
+                    </div>
+                    <div class="ticket-row">
+                        <span class="ticket-label">Formule:</span>
+                        <span class="ticket-value" id="ticket-service">---</span>
+                    </div>
+                    <div class="ticket-row" id="ticket-wine-row" style="display:none; color: #795548;">
+                        <span class="ticket-label">+ Vins:</span>
+                        <span class="ticket-value">OUI (+25€)</span>
+                    </div>
+                    <div class="ticket-row">
+                        <span class="ticket-label">Lieu:</span>
+                        <span class="ticket-value" id="ticket-location">---</span>
+                    </div>
+
+                    <div class="ticket-total-row">
+                        <span>TOTAL EST.</span>
+                        <span id="ticket-total">0 €</span>
+                    </div>
+
+                    <div id="ticket-extras" class="ticket-notes" style="display:none;">
+                        <strong>Notes cuisine :</strong><br>
+                        <span id="ticket-notes-content"></span>
+                    </div>
+                </div>
+                <div class="ticket-footer" style="margin-top:20px; text-align:center; border-top:1px dashed #000; padding-top:10px;">
+                    <p id="ticket-id" style="font-size:0.7em; color:#999;">#CMD-XXXX</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const hours = new Date().getHours();
+        const title = document.getElementById('dynamic-title');
+        const greeting = document.getElementById('dynamic-greeting');
+        if (hours >= 5 && hours < 12) { title.innerText = "Le Petit Déjeuner"; greeting.innerText = "La journée commence bien avec une réservation."; }
+        else if (hours >= 12 && hours < 15) { title.innerText = "Le Déjeuner"; greeting.innerText = "Ici, on détaille les 3 menus avec un vocabulaire appétissant mais professionnel"; }
+        else if (hours >= 18) { title.innerText = "Le Dîner"; greeting.innerText = "Une soirée d'exception se prépare."; }
+
+        const inputs = {
+            fullname: document.getElementById('fullname'),
+            phone: document.getElementById('phone'),
+            date: document.getElementById('date-rdv'),
+            guests: document.getElementById('guests'),
+            service: document.getElementById('service-type'),
+            wine: document.getElementById('wine-option'),
+            location: document.getElementById('location'),
+            allergies: document.getElementById('allergies'),
+            diet: document.getElementById('diet'),
+            comments: document.getElementById('comments')
+        };
+
+        const ticketFields = {
+            name: document.getElementById('ticket-name'),
+            phone: document.getElementById('ticket-phone'),
+            date: document.getElementById('ticket-date'),
+            guests: document.getElementById('ticket-guests'),
+            service: document.getElementById('ticket-service'),
+            wineRow: document.getElementById('ticket-wine-row'),
+            total: document.getElementById('ticket-total'),
+            location: document.getElementById('ticket-location'),
+            extrasContainer: document.getElementById('ticket-extras'),
+            extrasContent: document.getElementById('ticket-notes-content')
+        };
+
+        const MENU_PRICES = {
+            "Menu Complet": 85,
+            "Le Gourmand": 60,
+            "Le Brunch": 50
+        };
+        const WINE_PRICE = 25;
+
+        function updateTicket(field, value) {
+            if (ticketFields[field]) {
+                ticketFields[field].innerText = value || '---';
+                ticketFields[field].classList.remove('updated');
+                void ticketFields[field].offsetWidth;
+                ticketFields[field].classList.add('updated');
+            }
+        }
+
+        function calculateTotal() {
+            const nbGuests = parseInt(inputs.guests.value) || 0;
+            const selectedMenu = inputs.service.value;
+            const hasWine = inputs.wine.checked;
+
+            let basePrice = MENU_PRICES[selectedMenu] || 0;
+
+            if (hasWine) {
+                basePrice += WINE_PRICE;
+            }
+
+            const total = basePrice * nbGuests;
+
+            ticketFields.total.innerText = total + " €";
+            ticketFields.total.classList.remove('updated');
+            void ticketFields.total.offsetWidth;
+            ticketFields.total.classList.add('updated');
+        }
+
+        function updateExtras() {
+            let notes = [];
+            if(inputs.allergies.value) notes.push("⚠️ " + inputs.allergies.value);
+            if(inputs.diet.value) notes.push("🥗 " + inputs.diet.value);
+            if(inputs.comments.value) notes.push("📝 " + inputs.comments.value);
+            if (notes.length > 0) {
+                ticketFields.extrasContainer.style.display = 'block';
+                ticketFields.extrasContent.innerHTML = notes.join('<br>');
+            } else { ticketFields.extrasContainer.style.display = 'none'; }
+        }
+
+
+        inputs.fullname.addEventListener('input', (e) => updateTicket('name', e.target.value));
+        inputs.phone.addEventListener('input', (e) => updateTicket('phone', e.target.value));
+        inputs.location.addEventListener('input', (e) => updateTicket('location', e.target.value));
+
+        inputs.guests.addEventListener('input', (e) => {
+            updateTicket('guests', e.target.value);
+            calculateTotal();
+        });
+
+        inputs.service.addEventListener('change', (e) => {
+            const text = e.target.options[e.target.selectedIndex].text;
+            const cleanName = e.target.value ? e.target.value : '---';
+            updateTicket('service', cleanName);
+            calculateTotal();
+        });
+
+        inputs.wine.addEventListener('change', (e) => {
+            if(e.target.checked) {
+                ticketFields.wineRow.style.display = 'flex';
+                ticketFields.wineRow.classList.add('updated');
+            } else {
+                ticketFields.wineRow.style.display = 'none';
+            }
+            calculateTotal();
+        });
+
+        inputs.date.addEventListener('change', (e) => {
+            if(e.target.value) {
+                const dateObj = new Date(e.target.value);
+                const formatted = dateObj.toLocaleDateString('fr-FR', { day: 'numeric', month: 'numeric' }) + ' à ' + dateObj.toLocaleTimeString('fr-FR', { hour: '2-digit', minute:'2-digit' });
+                updateTicket('date', formatted);
+            }
+        });
+
+        inputs.allergies.addEventListener('input', updateExtras);
+        inputs.diet.addEventListener('input', updateExtras);
+        inputs.comments.addEventListener('input', updateExtras);
+
+        document.getElementById('ticket-id').innerText = '#CMD-' + Math.floor(Math.random() * 10000);
+
+        calculateTotal();
+
+        const form = document.getElementById('reservationForm');
+        const dateInput = document.getElementById('date-rdv');
+        const dateError = document.getElementById('date-error');
+        const submitBtn = document.getElementById('submitBtn');
+        const theTicket = document.getElementById('theTicket');
+        const mainFormContainer = document.getElementById('mainFormContainer');
+        const successMessage = document.getElementById('successMessage');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            let isValid = true;
+            dateError.style.display = 'none';
+            dateInput.setAttribute('aria-invalid', 'false');
+            const selectedDate = new Date(dateInput.value);
+            const now = new Date();
+
+            if (dateInput.value && selectedDate <= now) {
+                isValid = false;
+                dateError.textContent = "Date invalide (passée).";
+                dateError.style.display = 'block';
+                dateInput.setAttribute('aria-invalid', 'true');
+            }
+
+            if(isValid) {
+                submitBtn.disabled = true;
+                submitBtn.innerText = "Validation en cours...";
+                setTimeout(() => { theTicket.classList.add('stamped'); }, 200);
+                setTimeout(() => { theTicket.classList.add('sent'); }, 1000);
+                setTimeout(() => {
+                    mainFormContainer.classList.add('fade-out');
+                    successMessage.classList.add('visible');
+                }, 1500);
+            }
+        });
+    </script>
 {% endblock %}
