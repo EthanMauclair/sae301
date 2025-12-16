@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class LogController extends AbstractController
 {
-    #[Route('/log', name: 'app_log')]
+    #[Route('/log', name: 'app_admin')]
     public function index(): Response
     {
         return $this->render('log/index.html.twig', [

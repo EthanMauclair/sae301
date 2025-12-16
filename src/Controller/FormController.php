@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class FormController extends AbstractController
 {
-    #[Route('/form', name: 'app_form')]
+    #[Route('/form', name: 'app_order')]
     public function index(): Response
     {
         return $this->render('form/index.html.twig', [

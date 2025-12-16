@@ -1,33 +1,25 @@
-/* ------------------------------------------- */
-/* Fichier: _form.scss                         */
-/* Contenu: Styles spécifiques au formulaire   */
-/* ------------------------------------------- */
+// Fichier: assets/styles/_form.scss
 
-// 1. Variables Globales (Racine)
-:root {
-    // Les variables sont souvent mieux définies globalement (ex: dans app.scss ou un _variables.scss)
-    // mais elles sont laissées ici pour être complètes, en attendant la centralisation.
-    --primary: #c0392b;
-    --text-dark: #2c3e50;
-    --paper-bg: #fffbf0;
-    --ticket-bg: #fff;
-    --border-color: #d7ccc8;
-    --error: #e74c3c;
-    --bg-body: #ece5dd;
-    --success: #27ae60;
+// =========================================
+// 1. STYLES GENERAUX (Body & Wrappers)
+// =========================================
+body {
+    font-family: $font-text;
+    background-color: $bg-body;
+    background-image: radial-gradient($border-color 1px, transparent 1px);
+    background-size: 20px 20px;
+    margin: 0;
+    padding: 0;
+    color: $text-dark;
+    overflow-x: hidden;
+    width: 100%;
 }
 
-// 2. Styles du Corps et Conteneur Principal
-body {
-    font-family: 'Lato', sans-serif;
-    background-color: var(--bg-body);
-    background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
-    background-size: 20px 20px;
-    padding: 40px 20px;
+.container {
     max-width: 900px;
     margin: 0 auto;
-    color: var(--text-dark);
-    overflow-x: hidden;
+    padding: 40px 20px;
+    position: relative;
 }
 
 .wrapper {
@@ -36,16 +28,20 @@ body {
     gap: 2rem;
     align-items: flex-start;
     position: relative;
+    width: 100%;
 }
+
 .main-form {
     flex: 2;
     min-width: 300px;
     transition: opacity 0.5s ease;
 }
+
 .main-form.fade-out {
     opacity: 0;
     pointer-events: none;
 }
+
 .ticket-sidebar {
     flex: 1;
     min-width: 280px;
@@ -54,14 +50,17 @@ body {
     z-index: 10;
 }
 
-// 3. Styles du Ticket
+
+// =========================================
+// 2. STYLES DU TICKET
+// =========================================
 .ticket {
-    background: var(--ticket-bg);
+    background: $ticket-bg;
     padding: 20px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    font-family: 'Courier Prime', monospace;
-    border-top: 5px solid var(--text-dark);
-    border-bottom: 5px dashed var(--text-dark);
+    font-family: $font-mono;
+    border-top: 5px solid $text-dark;
+    border-bottom: 5px dashed $text-dark;
     transform: rotate(-1deg);
     transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
@@ -78,18 +77,21 @@ body {
 .ticket:hover {
     transform: rotate(0deg) scale(1.02);
 }
+
 .ticket h3 {
     text-align: center;
     border-bottom: 1px dashed #000;
     padding-bottom: 10px;
     margin-top: 0;
 }
+
 .ticket-row {
     display: flex;
     justify-content: space-between;
     margin-bottom: 8px;
     font-size: 0.9rem;
 }
+
 .ticket-label {
     font-weight: bold;
     flex-shrink: 0;
@@ -97,7 +99,7 @@ body {
 
 .ticket-value {
     text-align: right;
-    color: var(--primary);
+    color: $primary;
     max-width: 60%;
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -108,7 +110,7 @@ body {
     justify-content: space-between;
     margin-top: 15px;
     padding-top: 10px;
-    border-top: 2px double var(--text-dark);
+    border-top: 2px double $text-dark;
     font-size: 1.1rem;
     font-weight: bold;
 }
@@ -123,13 +125,16 @@ body {
     word-break: break-word;
 }
 
-// 4. Styles du Tampon
+
+// =========================================
+// 3. STYLES DU TAMPON & SUCCES
+// =========================================
 .stamp-overlay {
     position: absolute;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%) scale(3) rotate(-15deg);
-    border: 4px solid var(--primary);
-    color: var(--primary);
+    border: 4px solid $primary;
+    color: $primary;
     font-size: 1.5rem;
     font-weight: bold;
     text-transform: uppercase;
@@ -147,7 +152,6 @@ body {
     transform: translate(-50%, -50%) scale(1) rotate(-15deg);
 }
 
-// 5. Message de Succès
 .success-message {
     position: absolute;
     top: 50px; left: 0; right: 0;
@@ -157,38 +161,44 @@ body {
     transition: all 0.5s ease;
     pointer-events: none;
 }
+
 .success-message.visible {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
 }
+
 .success-icon {
     font-size: 4rem;
     margin-bottom: 1rem;
     display: block;
 }
+
 .btn-restart {
     margin-top: 20px;
     background: transparent;
-    border: 2px solid var(--primary);
-    color: var(--primary);
+    border: 2px solid $primary;
+    color: $primary;
     padding: 10px 20px;
     cursor: pointer;
     font-weight: bold;
 }
+
 .btn-restart:hover {
-    background: var(--primary);
+    background: $primary;
     color: white;
 }
 
 
-// 6. En-têtes et Intro
+// =========================================
+// 4. ENTETES & INTRO
+// =========================================
 h1 {
     text-align: center;
-    font-family: 'Playfair Display', serif;
+    font-family: $font-title;
     font-size: 2.5rem;
-    color: var(--primary);
-    border-bottom: 2px double var(--primary);
+    color: $primary;
+    border-bottom: 2px double $primary;
     display: inline-block;
     padding-bottom: 10px;
 }
@@ -203,58 +213,66 @@ h1 {
     font-style: italic;
 }
 
-// 7. Styles du Formulaire
+
+// =========================================
+// 5. FORMULAIRE
+// =========================================
 form {
-    background: var(--paper-bg);
+    background: $paper-bg;
     padding: 2rem;
     border: 1px solid #dcd0c0;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
+
 fieldset {
     border: none;
     padding: 0;
     margin-bottom: 2rem;
 }
+
 legend {
-    font-family: 'Playfair Display', serif;
+    font-family: $font-title;
     font-size: 1.5rem;
-    color: var(--text-dark);
+    color: $text-dark;
     margin-bottom: 1rem;
     font-weight: bold;
     display: block;
     width: 100%;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid $border-color;
 }
 
 .form-group {
     margin-bottom: 1.2rem;
 }
+
 label {
     display: block;
     margin-bottom: 0.3rem;
     font-weight: 700;
     font-size: 0.85rem;
     text-transform: uppercase;
-    color: var(--primary);
+    color: $primary;
 }
 
 input, select, textarea {
     width: 100%;
     padding: 0.8rem 0;
     border: none;
-    border-bottom: 2px solid var(--border-color);
+    border-bottom: 2px solid $border-color;
     background: transparent;
-    font-family: 'Playfair Display', serif;
+    font-family: $font-title;
     font-size: 1.1rem;
     box-sizing: border-box;
 }
+
 textarea {
     resize: vertical;
     overflow: auto;
 }
+
 input:focus, select:focus, textarea:focus {
     outline: none;
-    border-bottom-color: var(--primary);
+    border-bottom-color: $primary;
 }
 
 .checkbox-wrapper {
@@ -266,48 +284,55 @@ input:focus, select:focus, textarea:focus {
     padding: 10px;
     border-radius: 4px;
 }
+
 .checkbox-wrapper input[type="checkbox"] {
     width: auto;
     margin: 0;
     cursor: pointer;
     transform: scale(1.2);
 }
+
 .checkbox-wrapper label {
     margin: 0;
     cursor: pointer;
     text-transform: none;
-    color: var(--text-dark);
+    color: $text-dark;
     font-size: 1rem;
 }
+
 .price-tag {
-    color: var(--primary);
+    color: $primary;
     font-weight: bold;
-    font-family: 'Courier Prime', monospace;
+    font-family: $font-mono;
 }
 
 button[type="submit"] {
     width: 100%;
-    background-color: var(--text-dark);
+    background-color: $text-dark;
     color: white;
     padding: 1.2rem;
     border: none;
-    font-family: 'Lato', sans-serif;
+    font-family: $font-text;
     text-transform: uppercase;
     letter-spacing: 2px;
     cursor: pointer;
     transition: 0.3s;
 }
+
 button[type="submit"]:hover {
-    background-color: var(--primary);
+    background-color: $primary;
 }
+
 .required-mark {
-    color: var(--error);
+    color: $error;
 }
+
 .error-message {
-    color: var(--error);
+    color: $error;
     display: none;
     font-size: 0.9rem;
 }
+
 @media (min-width: 600px) {
     .grid-row {
         display: grid;
@@ -316,42 +341,51 @@ button[type="submit"]:hover {
     }
 }
 
-// 8. Détails/Résumé (Accordion)
+
+// =========================================
+// 6. DETAILS & ANIMATIONS
+// =========================================
 details {
     margin-bottom: 2rem;
     background: rgba(0,0,0,0.02);
     border-radius: 4px;
 }
+
 summary {
     cursor: pointer;
     padding: 1rem;
-    font-family: 'Playfair Display', serif;
+    font-family: $font-title;
     font-size: 1.2rem;
-    color: var(--text-dark);
+    color: $text-dark;
     font-weight: bold;
     list-style: none;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px dashed var(--border-color);
+    border-bottom: 1px dashed $border-color;
 }
+
 summary::after {
     content: '+';
     font-size: 1.5rem;
-    color: var(--primary);
+    color: $primary;
     transition: transform 0.3s;
 }
+
 details[open] summary::after {
     content: '-';
     transform: rotate(180deg);
 }
+
 details[open] summary {
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid $border-color;
 }
+
 .details-content {
     padding: 1.5rem;
     animation: slideDown 0.3s ease-out;
 }
+
 @keyframes slideDown {
     from {
         opacity: 0;
@@ -363,15 +397,123 @@ details[open] summary {
     }
 }
 
-// 9. Animation de Mise à Jour du Ticket
 .updated {
     animation: flash 0.5s ease;
 }
+
 @keyframes flash {
     0% {
         background-color: rgba(192, 57, 43, 0.2);
     }
     100% {
         background-color: transparent;
+    }
+}
+
+
+// =========================================
+// 7. STYLE NAPPE VICHY (Page Commande)
+// =========================================
+
+// Largeur de la nappe
+$nappe-width: 220px;
+// Écart entre le formulaire et la nappe
+$nappe-gap: 80px;
+
+$check-size: 70px;
+$check-color: rgba($primary, 0.35);
+
+.page-with-nappe {
+    position: relative;
+    overflow: visible;
+}
+
+.page-with-nappe::before,
+.page-with-nappe::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: $nappe-width;
+    z-index: -1;
+
+    background-color: white;
+    background-image:
+        linear-gradient(90deg, $check-color 50%, transparent 50%),
+        linear-gradient($check-color 50%, transparent 50%);
+    background-size: $check-size $check-size;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
+    border: 3px dashed rgba($primary, 0.5);
+}
+
+// Positionnement GAUCHE : On décale de la largeur + l'écart
+.page-with-nappe::before {
+    left: calc(-#{$nappe-width} - #{$nappe-gap});
+    border-right: none;
+}
+
+// Positionnement DROITE : On décale de la largeur + l'écart
+.page-with-nappe::after {
+    right: calc(-#{$nappe-width} - #{$nappe-gap});
+    border-left: none;
+}
+
+
+// RESPONSIVE pour la nappe
+// On cache si l'écran est trop petit pour afficher Contenu + Gap + Nappe
+@media (max-width: 1550px) {
+    .page-with-nappe::before,
+    .page-with-nappe::after {
+        display: none;
+    }
+}
+
+// =========================================
+// 8. RESPONSIVE MOBILE (Ajout)
+// =========================================
+@media (max-width: 850px) {
+
+    // On force les éléments l'un en dessous de l'autre
+    .wrapper {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    // Le formulaire prend toute la largeur
+    .main-form {
+        width: 100%;
+        min-width: 100%;
+        margin-right: 0;
+    }
+
+    // Le ticket passe en bas et arrête de flotter (sticky)
+    .ticket-sidebar {
+        position: static; /* Annule le sticky */
+        width: 100%;
+        min-width: 100%;
+        margin-top: 1rem;
+    }
+
+    // On centre le ticket visuellement
+    .ticket {
+        transform: rotate(0deg); /* On le met droit sur mobile */
+        margin: 0 auto;
+        max-width: 100%; /* Évite qu'il déborde */
+    }
+
+    // On réduit un peu les marges du conteneur
+    .container {
+        padding: 20px 15px;
+    }
+
+    // On réduit la taille du titre sur mobile pour éviter qu'il casse
+    h1 {
+        font-size: 2rem;
+    }
+
+    // On cache bien la nappe (sécurité supplémentaire)
+    .page-with-nappe::before,
+    .page-with-nappe::after {
+        display: none;
     }
 }

@@ -1,0 +1,47 @@
+<footer class="site-footer">
+    <div class="footer-content">
+
+        {# Colonne 1 : À Propos et Réseaux #}
+        <div class="footer-col about">
+            <h3>À Propos</h3>
+            <p>
+                Une cuisine authentique, chaleureuse et un brin gastronomique, préparée directement chez vous.
+                Je sélectionne les meilleurs produits locaux pour sublimer vos repas.
+            </p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                <a href="#"><i class="fab fa-google-plus-g"></i></a>
+            </div>
+        </div>
+
+        {# Colonne 2 : Liens Légaux #}
+        <div class="footer-col links">
+            <h3>Informations Légales</h3>
+            <ul>
+                <li><a href="#">Conditions Générales de Vente</a></li>
+                <li><a href="#">Mentions Légales</a></li>
+                <li><a href="#">Politique de Confidentialité</a></li>
+                <li><a href="#">Gestion des cookies</a></li>
+            </ul>
+        </div>
+
+        {# Colonne 3 : Contact #}
+        <div class="footer-col contact">
+            <h3>Nous Contacter</h3>
+            <p>📍 Déplacements : Région Grand Est</p>
+            <p>📞 06 00 00 00 00</p>
+            <p>✉️ contact@lacheffe.fr</p>
+            <br>
+            <a href="{{ path('app_order') }}" style="background:white; color:#2c3e50; padding:10px 20px; text-decoration:none; font-weight:bold; display:inline-block;">
+                Réserver une date
+            </a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; {{ "now"|date("Y") }} La Cheffe à Domicile • Site réalisé avec passion.</p>
+    </div>
+</footer>
