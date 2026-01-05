@@ -2,15 +2,30 @@
 
 // Couleurs de la charte "Cheffe"
 $primary:       #c0392b;   // Rouge brique
+$secondary:     #e74c3c;   // Utilisé pour "Lire la suite" (j'utilise $error)
 $text-dark:     #2c3e50;   // Bleu nuit corporate
+$text-light:    #7f8c8d;   // Gris doux pour le texte secondaire (supposé)
+
 $paper-bg:      #fffbf0;   // Fond papier
-$ticket-bg:     #fff;      // Fond ticket
-$border-color:  #d7ccc8;   // Bordures douces
+$card-bg:       #ffffff;   // Fond de carte (supposé car "white" était utilisé)
+$ticket-bg:     #fff;      // Fond ticket (équivalent à $card-bg)
+
+$border-color:  #d7ccc8;   // Bordures douces (utilisé pour $color-border-light)
+
 $error:         #e74c3c;   // Erreur
 $bg-body:       #ece5dd;   // Beige général
 $success:       #27ae60;   // Succès
 
-// Polices (optionnel, pratique pour centraliser)
+
+// Polices
 $font-title:    'Playfair Display', serif;
 $font-text:     'Lato', sans-serif;
 $font-mono:     'Courier Prime', monospace;
+
+// Espacements
+$spacing-default: 2rem;
+$spacing-small:   1rem;
+$spacing-xsmall:  0.5rem;
+
+// Ombres
+$shadow: 0 4px 6px rgba(0, 0, 0, 0.1);

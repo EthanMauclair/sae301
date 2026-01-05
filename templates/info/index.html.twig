@@ -3,18 +3,111 @@
 {% block title %}Hello InfoController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div class="container">
+        <main class="content-area">
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+            <section class="articles-grid">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/var/www/sae301/src/Controller/InfoController.php</code></li>
-        <li>Your template at <code>/var/www/sae301/templates/info/index.html.twig</code></li>
-    </ul>
-</div>
+                <article class="card">
+                    <div class="card-image-placeholder img-1"></div>
+                    <div class="card-content">
+                        <h3>La magie des repas de famille:</h3>
+                        <p>Les fêtes sont ce moment unique où la cuisine rassemble, émerveille et réchauffe les cœurs. Dans cet article, je vous propose un voyage au cœur des plats traditionnels de décembre, tout en partageant mes astuces de cheffe...</p>
+                        <a href="#" class="read-more">...LIRE LA SUITE</a>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-image-placeholder img-2"></div>
+                    <div class="card-content">
+                        <h3>Décembre arrive !</h3>
+                        <p>Décembre apporte avec lui des produits de saison et des recettes chaleureuses pour accompagner vos soirées d'hiver.</p>
+                        <a href="#" class="read-more">...LIRE LA SUITE</a>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-image-placeholder img-3"></div>
+                    <div class="card-content">
+                        <h3>Novembre, le mois où la cuisine prend son temps</h3>
+                        <p>Novembre invite à ralentir et à retrouver une cuisine plus douce et réconfortante. Dans cet article, je partage mon approche culinaire de ce mois de transition, entre produits d'automne, plats mijotés et moments de calme autour de la table...</p>
+                        <a href="#" class="read-more">...LIRE LA SUITE</a>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-image-placeholder img-4"></div>
+                    <div class="card-content">
+                        <h3>Plaisirs fondants !</h3>
+                        <p>C'est le moment de céder à la tentation des plats riches et onctueux. Je partage avec vous cette idée simple mais spectaculaire : un cœur de fromage fondu entouré de légumes rôtis dorés à souhait. L'alliance idéale de textures et de saveurs pour ...</p>
+                        <a href="#" class="read-more">...LIRE LA SUITE</a>
+                    </div>
+                </article>
+
+            </section>
+
+            {# --- COLONNE DROITE : SIDEBAR (EN DUR) --- #}
+            <aside class="sidebar">
+
+                {# Recherche #}
+                <div class="search-widget">
+                    <input type="text" placeholder="Rechercher ...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+
+                {# Timeline #}
+                <div class="timeline-widget">
+                    <h3 class="timeline-title">TIMELINE</h3>
+
+                    <div class="timeline">
+
+                        <div class="timeline-item">
+                            <div class="timeline-date">
+                                <span>07</span>DEC
+                            </div>
+                            <a href="#" class="timeline-link">La magie des repas de famille:</a>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-date">
+                                <span>28</span>NOV
+                            </div>
+                            <a href="#" class="timeline-link">Décembre arrive !</a>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-date">
+                                <span>14</span>NOV
+                            </div>
+                            <a href="#" class="timeline-link">Novembre, le mois où la cuisine prend son temps</a>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-date">
+                                <span>08</span>NOV
+                            </div>
+                            <a href="#" class="timeline-link">Plaisirs fondants !</a>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-date">
+                                <span>07</span>DEC
+                            </div>
+                            <a href="#" class="timeline-link">La magie des repas de famille:</a>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-date">
+                                <span>28</span>NOV
+                            </div>
+                            <a href="#" class="timeline-link">Décembre arrive !</a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </aside>
+        </main>
+
+    </div>
 {% endblock %}

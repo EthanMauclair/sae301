@@ -1,20 +1,169 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello LogController!{% endblock %}
+{% block title %}Planning - Atelier de la Cheffe{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div class="container">
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        <header class="admin-header">
+            <h2>L'Atelier de la Cheffe</h2>
+            <p>Semaine en cours</p>
+        </header>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/var/www/sae301/src/Controller/LogController.php</code></li>
-        <li>Your template at <code>/var/www/sae301/templates/log/index.html.twig</code></li>
-    </ul>
-</div>
+        {# === SECTION 1 : TICKETS & FICELLES === #}
+        <section class="orders-clothesline-wrapper">
+            <div class="clothesline"></div>
+            <div class="tickets-container">
+
+                {# TICKET 1 #}
+                <article class="hanging-ticket">
+                    <div class="clothespin"></div>
+                    <div class="stamp-overlay">EN CUISINE</div>
+                    <h3>Bon de Commande</h3>
+                    <div class="ticket-row"><span class="ticket-label">Ref:</span><span class="ticket-value">#CMD-211</span></div>
+                    <div class="ticket-row"><span class="ticket-label">Client:</span><span class="ticket-value">Mme Dupont</span></div>
+                    <div class="ticket-row"><span class="ticket-label">Date:</span><span class="ticket-value">24 Jan.</span></div>
+                    <div class="ticket-row"><span class="ticket-label">Formule:</span><span class="ticket-value">Dîner x4</span></div>
+                    <div class="ticket-total-row"><span>TOTAL</span><span>180 €</span></div>
+                    <p class="ticket-notes">Note: Sans gluten pour 1 pers.</p>
+                </article>
+
+                {# TICKET 2 #}
+                <article class="hanging-ticket">
+                    <div class="clothespin"></div>
+                    <div class="stamp-overlay">PRÉPA</div>
+                    <h3>Bon de Commande</h3>
+                    <div class="ticket-row"><span class="ticket-label">Ref:</span><span class="ticket-value">#CMD-212</span></div>
+                    <div class="ticket-row"><span class="ticket-label">Client:</span><span class="ticket-value">M. Martin</span></div>
+                    <div class="ticket-row"><span class="ticket-label">Date:</span><span class="ticket-value">25 Jan.</span></div>
+                    <div class="ticket-row"><span class="ticket-label">Formule:</span><span class="ticket-value">Déj. x2</span></div>
+                    <div class="ticket-total-row"><span>TOTAL</span><span>95 €</span></div>
+                    <p class="ticket-notes">Note: Végétarien strict.</p>
+                </article>
+
+                {# TICKET 3 #}
+                <article class="hanging-ticket">
+                    <div class="clothespin"></div>
+                    <div class="stamp-overlay">ATTENTE</div>
+                    <h3>Bon de Commande</h3>
+                    <div class="ticket-row"><span class="ticket-label">Ref:</span><span class="ticket-value">#CMD-213</span></div>
+                    <div class="ticket-row"><span class="ticket-label">Client:</span><span class="ticket-value">Mme Leroy</span></div>
+                    <div class="ticket-row"><span class="ticket-label">Date:</span><span class="ticket-value">26 Jan.</span></div>
+                    <div class="ticket-row"><span class="ticket-label">Formule:</span><span class="ticket-value">Traiteur</span></div>
+                    <div class="ticket-total-row"><span>TOTAL</span><span>320 €</span></div>
+                    <p class="ticket-notes">Note: Allergie fruits de mer.</p>
+                </article>
+
+            </div>
+        </section>
+
+        {# === SECTION 2 : PLANNING === #}
+        <h3 class="section-title">Semaine en cours</h3>
+
+        <section class="weekly-container">
+
+            <div class="weekly-grid">
+
+                {# 1. Colonne Heures #}
+                <div class="timeline-col">
+                    {% for i in 8..22 %}
+                        <div class="time-marker"><span>{{ i }}h -</span></div>
+                    {% endfor %}
+                </div>
+
+                {# LUNDI : Exemple Midi (Plat + Dessert) #}
+                <div class="day-col">
+                    <div class="day-title">Lundi</div>
+
+                    <div class="plan-item type-midi" style="top: 240px; height: 120px;">
+                        <strong>12:00 - 14:00</strong>
+                        Plat + Dessert
+                        <br><small>24 couverts</small>
+                    </div>
+                </div>
+
+                {# MARDI : Exemple Soir (Menu Complet) #}
+                <div class="day-col">
+                    <div class="day-title">Mardi</div>
+
+                    <div class="plan-item" style="top: 660px; height: 120px;">
+                        <strong>19:00 - 21:00</strong>
+                        Menu Complet
+                        <br><small>Complet</small>
+                    </div>
+                </div>
+
+                {# MERCREDI : Double service (Midi + Soir) #}
+                <div class="day-col today">
+                    <div class="day-title">Mercredi</div>
+
+                    <div class="plan-item type-midi" style="top: 240px; height: 120px;">
+                        <strong>12:00 - 14:00</strong>
+                        Plat + Dessert
+                    </div>
+
+                    <div class="plan-item" style="top: 660px; height: 120px;">
+                        <strong>19:00 - 21:00</strong>
+                        Menu Complet
+                    </div>
+                </div>
+
+                {# JEUDI #}
+                <div class="day-col">
+                    <div class="day-title">Jeudi</div>
+
+                    <div class="plan-item" style="top: 660px; height: 120px;">
+                        <strong>19:00 - 21:00</strong>
+                        Plat + Dessert
+                    </div>
+                </div>
+
+                {# VENDREDI #}
+                <div class="day-col">
+                    <div class="day-title">Vendredi</div>
+
+                    <div class="plan-item type-midi" style="top: 240px; height: 120px;">
+                        <strong>12:00 - 14:00</strong>
+                        Menu Complet
+                    </div>
+
+                    <div class="plan-item" style="top: 660px; height: 120px;">
+                        <strong>19:00 - 21:00</strong>
+                        Menu Complet
+                    </div>
+                </div>
+
+                {# SAMEDI : Fermé #}
+                <div class="day-col">
+                    <div class="day-title">Samedi</div>
+                    <div class="plan-item closed" style="top: 60px; height: 180px;">
+                        FERMÉ – Repos
+                    </div>
+                </div>
+
+                {# DIMANCHE : Brunch uniquement #}
+                <div class="day-col">
+                    <div class="day-title">Dimanche</div>
+
+                    <div class="plan-item type-brunch" style="top: 120px; height: 120px;">
+                        <strong>10:00 - 12:00</strong>
+                        Brunch
+                        <br><small>Service unique</small>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        {# === SECTION 3 : FOOTER === #}
+        <section class="admin-tools">
+            <h4>Ajouter une indisponibilité</h4>
+            <form action="#" method="post">
+                <input type="date" name="date" required>
+                <input type="text" name="reason" placeholder="Motif (ex: Congés, Travaux...)" required>
+                <button type="submit">Bloquer</button>
+            </form>
+        </section>
+
+    </div>
 {% endblock %}

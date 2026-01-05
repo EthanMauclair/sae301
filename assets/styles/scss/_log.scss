@@ -1,0 +1,253 @@
+/* =========================================
+   1. RESET & BASE
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier Prime', monospace;
+    background-color: #f4f1ea;
+    background-image: radial-gradient(#dcdcdc 1px, transparent 1px);
+    background-size: 20px 20px;
+    min-height: 100vh;
+    color: #2c3e50;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.98);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 768px) {
+    .container { padding: 40px; }
+}
+
+/* =========================================
+   2. HEADER
+   ========================================= */
+.admin-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.admin-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.admin-header p { font-style: italic; color: #7f8c8d; font-size: 0.9rem; }
+
+@media (min-width: 768px) {
+    .admin-header h2 { font-size: 2.5rem; }
+    .admin-header { margin-bottom: 5rem; }
+}
+
+/* =========================================
+   3. FIL À LINGE (COMMANDES)
+   ========================================= */
+.orders-clothesline-wrapper {
+    position: relative;
+    padding: 20px 0;
+    margin-bottom: 3rem;
+}
+
+.clothesline {
+    display: none; /* Masqué sur mobile */
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to right, transparent 0%, #555 5%, #555 95%, transparent 100%);
+    z-index: 1;
+}
+
+.tickets-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+@media (min-width: 992px) {
+    .clothesline { display: block; }
+    .tickets-container {
+        flex-direction: row;
+        justify-content: center;
+        gap: 3rem;
+    }
+    .orders-clothesline-wrapper { padding: 60px 20px 100px; }
+}
+
+/* --- TICKET --- */
+.hanging-ticket {
+    position: relative;
+    background: #fff;
+    width: 100%;
+    max-width: 280px;
+    padding: 30px 20px 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-bottom: 3px dashed #bdc3c7;
+    z-index: 5;
+}
+
+@media (min-width: 992px) {
+    .hanging-ticket {
+        width: 260px;
+        margin-top: 70px;
+        transform-origin: top center;
+        transition: transform 0.3s ease;
+    }
+    .hanging-ticket:hover { transform: scale(1.05) rotate(0deg) !important; z-index: 50; }
+
+    /* Rotations naturelles */
+    .hanging-ticket:nth-child(1) { transform: rotate(2deg); }
+    .hanging-ticket:nth-child(2) { transform: rotate(-1.5deg); margin-top: 60px; }
+    .hanging-ticket:nth-child(3) { transform: rotate(1.5deg); }
+
+    /* Le trou */
+    .hanging-ticket::after {
+        content: '';
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 14px; height: 14px;
+        background: #333; border-radius: 50%;
+        box-shadow: inset 0 1px 2px rgba(0,0,0,0.8);
+    }
+
+    /* La Ficelle */
+    .hanging-ticket::before {
+        content: '';
+        position: absolute;
+        top: -65px; left: 50%; margin-left: -2px;
+        width: 4px; height: 85px;
+        background: repeating-linear-gradient(45deg, #d35400, #d35400 3px, #a04000 3px, #a04000 6px);
+        z-index: -1;
+    }
+}
+
+/* Pince à linge */
+.clothespin {
+    display: none;
+    position: absolute;
+    top: -80px; left: 50%; transform: translateX(-50%);
+    width: 14px; height: 40px;
+    background: #d35400; border-radius: 3px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    z-index: 20;
+}
+@media (min-width: 992px) { .clothespin { display: block; } }
+
+/* Détails internes */
+.ticket-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.9rem; }
+.ticket-label { font-weight: bold; }
+.ticket-value { color: #c0392b; font-weight: bold; }
+.ticket-total-row { margin-top: 15px; padding-top: 10px; border-top: 3px double #2c3e50; display: flex; justify-content: space-between; font-weight: 900; font-size: 1.1rem; }
+.ticket-notes { margin-top: 15px; font-size: 0.8rem; font-style: italic; background: #f9f9f9; padding: 5px; color: #7f8c8d; }
+.stamp-overlay { position: absolute; top: 10px; right: 10px; font-size: 0.7rem; border: 2px solid #e74c3c; color: #e74c3c; padding: 2px 5px; transform: rotate(-15deg); opacity: 0.5; font-weight: bold; text-transform: uppercase; }
+
+/* =========================================
+   4. PLANNING
+   ========================================= */
+h3.section-title { text-align: center; font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 1.5rem; }
+
+.weekly-container {
+    border: 1px solid #dcdcdc;
+    background: #fff;
+    margin-bottom: 3rem;
+    overflow-x: auto; /* Scroll horizontal sur mobile */
+}
+
+.weekly-grid {
+    display: flex;
+    position: relative;
+    padding-top: 50px;
+    min-width: 900px; /* Garantit que le planning reste lisible */
+}
+
+.timeline-col { width: 70px; flex-shrink: 0; border-right: 2px solid #ddd; background: #fafafa; }
+.time-marker { height: 60px; display: flex; align-items: flex-start; justify-content: flex-end; padding-right: 15px; font-size: 0.75rem; color: #999; font-weight: bold; }
+.time-marker span { transform: translateY(-50%); background: #fafafa; padding-left: 5px; }
+
+.day-col {
+    flex: 1;
+    border-right: 1px solid #eee;
+    position: relative;
+    min-height: 500px;
+    background-image: linear-gradient(#eee 1px, transparent 1px);
+    background-size: 100% 60px;
+}
+
+.day-title {
+    position: absolute;
+    top: -50px; left: 0; right: 0;
+    height: 50px; line-height: 50px;
+    text-align: center; color: #c0392b; font-weight: bold;
+    text-transform: uppercase; font-size: 0.8rem; border-bottom: 2px solid #ddd; background: #fff;
+}
+
+.day-col.today { background-color: rgba(46, 204, 113, 0.05); }
+
+.plan-item {
+    position: absolute;
+    left: 5px; right: 5px;
+    background: #fff;
+    border-left: 4px solid #2c3e50;
+    padding: 8px; font-size: 0.8rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    border-radius: 0 4px 4px 0;
+    overflow: hidden;
+}
+
+.plan-item.type-brunch { border-left-color: #e67e22; background-color: #fffbf0; }
+.plan-item.type-midi { border-left-color: #27ae60; }
+.plan-item.closed { border-left-color: #c0392b; color: #c0392b; font-weight: bold; background: repeating-linear-gradient(-45deg, #fff, #fff 10px, #fff5f5 10px, #fff5f5 20px); display: flex; align-items: center; justify-content: center; }
+
+/* =========================================
+   5. FOOTER ADMIN
+   ========================================= */
+.admin-tools {
+    background-color: #2c3e50;
+    padding: 20px;
+    border-radius: 4px;
+    color: white;
+}
+
+.admin-tools h4 { font-family: 'Playfair Display', serif; margin-bottom: 15px; }
+
+.admin-tools form { display: flex; flex-direction: column; gap: 10px; }
+
+.admin-tools input {
+    background: #34495e;
+    border: 1px solid #465c71;
+    color: white;
+    padding: 12px;
+    border-radius: 3px;
+}
+
+.admin-tools button {
+    background: #c0392b;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+@media (min-width: 768px) {
+    .admin-tools { padding: 30px; }
+    .admin-tools form { flex-direction: row; }
+    .admin-tools input { flex: 1; }
+    .admin-tools button { width: auto; padding: 0 30px; }
+}
