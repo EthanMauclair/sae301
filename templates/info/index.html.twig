@@ -8,17 +8,27 @@
 
             <section class="articles-grid">
 
+                {# ARTICLE 1 #}
                 <article class="card">
-                    <div class="card-image-placeholder img-1"></div>
+                    {# ICI : J'ai mis une vraie image #}
+                    {# Si tu as une image locale : src="{{ asset('images/ton-image.jpg') }}" #}
+                    <img src="{{ asset('images/dinde.webp') }}"
+                         alt="Repas de famille"
+                         class="card-img">
+
                     <div class="card-content">
                         <h3>La magie des repas de famille:</h3>
-                        <p>Les fêtes sont ce moment unique où la cuisine rassemble, émerveille et réchauffe les cœurs. Dans cet article, je vous propose un voyage au cœur des plats traditionnels de décembre, tout en partageant mes astuces de cheffe...</p>
+                        <p>Les fêtes sont ce moment unique où la cuisine rassemble, émerveille et réchauffe les cœurs. Dans cet article, je vous propose un voyage au cœur des plats traditionnels...</p>
                         <a href="#" class="read-more">...LIRE LA SUITE</a>
                     </div>
                 </article>
 
+                {# ARTICLE 2 #}
                 <article class="card">
-                    <div class="card-image-placeholder img-2"></div>
+                    <img src="{{ asset('images/soupe.jpg') }}"
+                         alt="Légumes d'hiver"
+                         class="card-img">
+
                     <div class="card-content">
                         <h3>Décembre arrive !</h3>
                         <p>Décembre apporte avec lui des produits de saison et des recettes chaleureuses pour accompagner vos soirées d'hiver.</p>
@@ -26,88 +36,72 @@
                     </div>
                 </article>
 
+                {# ARTICLE 3 #}
                 <article class="card">
-                    <div class="card-image-placeholder img-3"></div>
+                    <img src="{{ asset('images/nov.jpg') }}"
+                         alt="Automne"
+                         class="card-img">
+
                     <div class="card-content">
                         <h3>Novembre, le mois où la cuisine prend son temps</h3>
-                        <p>Novembre invite à ralentir et à retrouver une cuisine plus douce et réconfortante. Dans cet article, je partage mon approche culinaire de ce mois de transition, entre produits d'automne, plats mijotés et moments de calme autour de la table...</p>
+                        <p>Novembre invite à ralentir et à retrouver une cuisine plus douce et réconfortante. Dans cet article, je partage mon approche...</p>
                         <a href="#" class="read-more">...LIRE LA SUITE</a>
                     </div>
                 </article>
 
+                {# ARTICLE 4 #}
                 <article class="card">
-                    <div class="card-image-placeholder img-4"></div>
+                    <img src="{{ asset('images/im4.jpg') }}"
+                         alt="Fromage fondu"
+                         class="card-img">
+
                     <div class="card-content">
                         <h3>Plaisirs fondants !</h3>
-                        <p>C'est le moment de céder à la tentation des plats riches et onctueux. Je partage avec vous cette idée simple mais spectaculaire : un cœur de fromage fondu entouré de légumes rôtis dorés à souhait. L'alliance idéale de textures et de saveurs pour ...</p>
+                        <p>C'est le moment de céder à la tentation des plats riches et onctueux. Je partage avec vous cette idée simple mais spectaculaire...</p>
                         <a href="#" class="read-more">...LIRE LA SUITE</a>
                     </div>
                 </article>
 
             </section>
 
-            {# --- COLONNE DROITE : SIDEBAR (EN DUR) --- #}
+            {# --- SIDEBAR (IDENTIQUE A L'ORIGINAL) --- #}
             <aside class="sidebar">
-
-                {# Recherche #}
                 <div class="search-widget">
                     <input type="text" placeholder="Rechercher ...">
                     <button><i class="fas fa-search"></i></button>
                 </div>
 
-                {# Timeline #}
                 <div class="timeline-widget">
                     <h3 class="timeline-title">TIMELINE</h3>
-
                     <div class="timeline">
-
+                        {# Liste des dates (Identique à ton fichier original) #}
                         <div class="timeline-item">
-                            <div class="timeline-date">
-                                <span>07</span>DEC
-                            </div>
+                            <div class="timeline-date"><span>07</span>DEC</div>
                             <a href="#" class="timeline-link">La magie des repas de famille:</a>
                         </div>
-
                         <div class="timeline-item">
-                            <div class="timeline-date">
-                                <span>28</span>NOV
-                            </div>
+                            <div class="timeline-date"><span>28</span>NOV</div>
                             <a href="#" class="timeline-link">Décembre arrive !</a>
                         </div>
-
                         <div class="timeline-item">
-                            <div class="timeline-date">
-                                <span>14</span>NOV
-                            </div>
+                            <div class="timeline-date"><span>14</span>NOV</div>
                             <a href="#" class="timeline-link">Novembre, le mois où la cuisine prend son temps</a>
                         </div>
-
                         <div class="timeline-item">
-                            <div class="timeline-date">
-                                <span>08</span>NOV
-                            </div>
+                            <div class="timeline-date"><span>08</span>NOV</div>
                             <a href="#" class="timeline-link">Plaisirs fondants !</a>
                         </div>
-
                         <div class="timeline-item">
-                            <div class="timeline-date">
-                                <span>07</span>DEC
-                            </div>
+                            <div class="timeline-date"><span>07</span>DEC</div>
                             <a href="#" class="timeline-link">La magie des repas de famille:</a>
                         </div>
-
                         <div class="timeline-item">
-                            <div class="timeline-date">
-                                <span>28</span>NOV
-                            </div>
+                            <div class="timeline-date"><span>28</span>NOV</div>
                             <a href="#" class="timeline-link">Décembre arrive !</a>
                         </div>
-
                     </div>
                 </div>
-
             </aside>
         </main>
-
     </div>
 {% endblock %}

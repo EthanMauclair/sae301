@@ -1,0 +1,242 @@
+// Import des variables si ce fichier est compilé seul (sinon c'est géré par le parent)
+// @import 'variables';
+
+// --- COMPOSANTS GLOBAUX POUR CETTE PAGE ---
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: $font-text;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background-color: $primary;
+    color: #fff;
+    &:hover {
+        background-color: darken($primary, 10%);
+        transform: translateY(-2px);
+    }
+}
+.btn-lg {
+    padding: 1.2rem 3rem;      /* Plus d'espace : Hauteur / Largeur */
+    font-size: 1.2rem;         /* Texte plus gros */
+    border-radius: 4px;        /* Légèrement plus arrondi pour la taille */
+    box-shadow: 0 4px 15px rgba(192, 57, 43, 0.4); /* Une ombre portée rouge (basée sur $primary) pour le faire ressortir */
+
+    &:hover {
+        transform: translateY(-4px); /* Remonte un peu plus haut au survol */
+        box-shadow: 0 6px 20px rgba(192, 57, 43, 0.6);
+    }
+}
+.section-title {
+    font-family: $font-title;
+    font-size: 2.5rem;
+    text-align: center;
+    color: $text-dark;
+    margin-bottom: 3rem;
+
+    &.light {
+        color: $paper-bg; // Pour les fonds foncés
+    }
+}
+
+// --- 1. HERO SECTION ---
+.home-hero {
+    height: 85vh; // Prend presque tout l'écran
+    background-image: url('../../../public/images/hero1.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-overlay {
+    background: rgba(0, 0, 0, 0.4); // Assombrit l'image
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-content-box {
+    text-align: center;
+    max-width: 800px;
+    padding: 0 20px;
+
+    h1 {
+        font-family: $font-title;
+        color: #fff;
+        font-size: 3.5rem;
+        text-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        margin-bottom: 2rem;
+        line-height: 1.2;
+    }
+}
+
+// --- 2. SECTION QUI SOMMES NOUS (CORRECTIF "ANTI-DEFENESTRATION") ---
+.section-about {
+    background-color: $text-dark;
+    color: $paper-bg;
+    overflow: hidden; // Sécurité
+}
+
+.container-split {
+    display: flex;
+    flex-wrap: wrap;
+    /* On enlève align-items stretch ici car on va gérer l'image autrement */
+}
+
+.text-side {
+    flex: 1 1 50%;
+    padding: 4rem;
+    min-width: 300px;
+
+    h2 {
+        font-family: $font-title;
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        color: $paper-bg;
+    }
+
+    p {
+        font-family: $font-text;
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+        opacity: 0.9;
+        font-size: 1rem;
+        text-align: justify;
+    }
+}
+
+.image-side {
+    flex: 1 1 50%;
+    min-width: 300px;
+    position: relative; /* CRUCIAL : C'est le repère pour l'image */
+    min-height: 400px;  /* CRUCIAL : Hauteur minimale garantie (surtout sur mobile) */
+
+    img {
+        position: absolute; /* L'image sort du flux normal... */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;       /* ...pour coller aux 4 coins de son parent */
+        object-fit: cover;  /* Elle remplit sans se déformer */
+        display: block;
+    }
+}
+
+// --- 3. SECTION FORMULES (ZIG ZAG) ---
+.section-formules {
+    padding: 5rem 1rem;
+    background-color: $bg-body;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.formula-card {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4rem;
+    gap: 3rem;
+
+    // Inverse l'ordre pour les éléments pairs (2e, 4e...)
+    &:nth-child(even) {
+        flex-direction: row-reverse;
+    }
+
+    .formula-img {
+        flex: 1;
+        img {
+            width: 100%;
+            border-radius: 4px;
+            box-shadow: $shadow;
+        }
+    }
+
+    .formula-content {
+        flex: 1;
+        padding: 1rem;
+
+        h3 {
+            font-family: $font-title;
+            font-size: 2rem;
+            color: $text-dark;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-family: $font-text;
+            color: lighten($text-dark, 20%);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+    }
+}
+
+// --- 4. SECTION ENGAGEMENTS ---
+.section-engagements {
+    background-color: $text-dark; // Fond bleu nuit comme sur la maquette
+    padding: 5rem 1rem;
+    color: $paper-bg;
+}
+
+.engagements-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.engagement-item {
+    background: rgba(255, 255, 255, 0.05); // Légèrement plus clair que le fond
+    padding: 2rem;
+    text-align: center;
+    border-radius: 8px;
+
+    img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        margin-bottom: 1.5rem;
+        border-radius: 4px;
+    }
+
+    h3 {
+        font-family: $font-title;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: $paper-bg;
+    }
+
+    p {
+        font-family: $font-text;
+        font-size: 0.95rem;
+        opacity: 0.8;
+        line-height: 1.6;
+    }
+}
+
+// --- RESPONSIVE ---
+@media (max-width: 768px) {
+    .container-split {
+        flex-direction: column-reverse; /* Met l'image au dessus du texte sur mobile si tu veux, ou 'column' normal */
+    }
+
+    .image-side {
+        height: 300px; /* On force une hauteur fixe sur mobile */
+        min-height: 300px;
+        flex: none; /* Désactive le flex grow sur mobile */
+        width: 100%;
+    }
+}

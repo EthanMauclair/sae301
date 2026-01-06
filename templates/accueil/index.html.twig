@@ -1,20 +1,126 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AccueilController!{% endblock %}
+{% block title %}Accueil - Cheffe à Domicile{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    {# SECTION 1 : HERO (Spécifique Accueil) #}
+    <section class="home-hero">
+        <div class="hero-overlay">
+            <div class="hero-content-box">
+                <a href="#formules" class="btn btn-primary btn-lg">
+                    Découvrir nos menus
+                </a>
+            </div>
+        </div>
+    </section>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/var/www/sae301/src/Controller/AccueilController.php</code></li>
-        <li>Your template at <code>/var/www/sae301/templates/accueil/index.html.twig</code></li>
-    </ul>
-</div>
+    {# SECTION 2 : QUI SOMMES NOUS (Corrigée) #}
+    <section class="section-about">
+        <div class="container-split">
+            <div class="image-side">
+                <img src="{{ asset('images/couple.jpg') }}" alt="Cheffe en cuisine">
+            </div>
+            <div class="text-side">
+                <h2>Qui sommes nous ?</h2>
+
+                <p>
+                    Bienvenue dans mon univers culinaire où la passion pour la gastronomie rencontre le confort et l'intimité de votre foyer.
+                    Mon ambition est simple : transformer votre salle à manger en une table d'exception, en vous libérant de toutes les contraintes
+                    liées à l'organisation d'un repas, pour que vous puissiez profiter pleinement de vos convives.
+                </p>
+
+                <p>
+                    Forts de plusieurs années d'expérience dans des établissements réputés, nous sélectionnons rigoureusement chaque ingrédient
+                    auprès de producteurs locaux et passionnés. La fraîcheur des produits et le respect des saisons sont au cœur de notre démarche,
+                    garantissant des assiettes aussi savoureuses que responsables.
+                </p>
+
+                <p>
+                    Laissez-vous tenter par une expérience sur-mesure. Que ce soit pour un dîner romantique, un repas d'affaires ou une célébration
+                    familiale, nous nous adaptons à vos envies et à vos régimes alimentaires spécifiques pour créer un moment de partage inoubliable.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    {# SECTION 3 : NOS FORMULES (Zig-Zag) #}
+    <section id="formules" class="section-formules">
+        <h2 class="section-title">Nos Formules</h2>
+
+        <div class="formulas-grid">
+            {# Formule 1 : Le Brunch #}
+            <article class="formula-card">
+                <div class="formula-img">
+                    <img src="{{ asset('images/br1.jpg') }}" alt="Brunch dominical">
+                </div>
+                <div class="formula-content">
+                    <h3>Le Brunch dominical</h3>
+                    <p>
+                        Au menu : une farandole de douceurs sucrées et salées. Retrouvez les incontournables viennoiseries pur beurre,
+                        nos pains de campagne croustillants accompagnés de confitures maison. Côté salé, laissez-vous tenter par nos
+                        œufs brouillés à la truffe, le saumon gravlax et une sélection de fromages affinés. Le tout accompagné de
+                        jus de fruits frais pressés minute.
+                    </p>
+                    <a href="{{ path('app_order') }}" class="btn btn-primary">Commnder le Brunch</a>
+                </div>
+            </article>
+
+            {# Formule 2 : Le Déjeuner #}
+            <article class="formula-card">
+                <div class="formula-img">
+                    <img src="{{ asset('images/dej2.jpg') }}" alt="Déjeuner à domicile">
+                </div>
+                <div class="formula-content">
+                    <h3>Le Déjeuner à domicile</h3>
+                    <p>
+                        La pause déjeuner doit rester un moment de convivialité. Nous vous proposons des formules équilibrées et gourmandes,
+                        servies à l'assiette pour respecter votre rythme. Des produits de saison, cuisinés avec légèreté pour vous redonner
+                        de l'énergie sans vous alourdir. Idéal pour recevoir vos proches ou pour vos déjeuners d'affaires informels sans
+                        quitter le confort de votre salon.
+                    </p>
+                    <a href="{{ path('app_order') }}" class="btn btn-primary">Commander le déjeuner</a>
+                </div>
+            </article>
+
+            {# Formule 3 : Le Dîner #}
+            <article class="formula-card">
+                <div class="formula-img">
+                    <img src="{{ asset('images/din1.jpg') }}" alt="Dîner Signature">
+                </div>
+                <div class="formula-content">
+                    <h3>Le Dîner Signature</h3>
+                    <p>
+                        Le summum de la gastronomie à domicile. Vivez l'expérience d'un grand restaurant dans l'intimité de votre foyer.
+                        Notre chef vous propose un parcours gastronomique en 5 temps, rythmé par des accords mets et vins subtils sélectionnés
+                        par notre sommelier. Une cuisine raffinée, créative et élégante pour célébrer vos plus beaux moments et épater vos convives.
+                    </p>
+                    <a href="{{ path('app_order') }}" class="btn btn-primary">Commander le Diner</a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    {# SECTION 4 : NOS ENGAGEMENTS (3 Colonnes) #}
+    <section class="section-engagements">
+        <h2 class="section-title light">Nos Engagements</h2>
+        <div class="engagements-grid">
+            <div class="engagement-item">
+                <img src="{{ asset('images/cat1.jpg') }}" alt="Produits">
+                <h3>Des produits de qualité</h3>
+                <p>Nous travaillons exclusivement avec des producteurs locaux et bio.</p>
+            </div>
+            <div class="engagement-item">
+                <img src="{{ asset('images/cat2.jpg') }}" alt="Service">
+                <h3>Un service impeccable</h3>
+                <p>Discrétion et efficacité sont les maîtres mots de nos équipes en salle.</p>
+            </div>
+            <div class="engagement-item">
+                <img src="{{ asset('images/cat3.jpg') }}" alt="Sérénité">
+                <h3>Une expérience sereine</h3>
+                <p>Nous nous occupons de tout, de l'achat des ingrédients au nettoyage final.</p>
+            </div>
+        </div>
+    </section>
+
 {% endblock %}

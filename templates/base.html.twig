@@ -28,15 +28,14 @@
 {% include 'partials/_header.html.twig' %}
 
 {# 2. HERO IMAGE (Conditionnelle : Pas sur l'admin) #}
-{% if app.request.get('_route') != 'app_admin' %}
-    <div class="hero-section">
+{% if app.request.get('_route') != 'app_admin' and app.request.get('_route') != 'app_home' %}    <div class="hero-section">
         <div class="hero-content">
             {# Tu pourras changer ce titre dynamiquement plus tard si tu veux #}
             <h2>
                 {% if app.request.get('_route') == 'app_order' %}
                     Réservez votre Moment
                 {% elseif app.request.get('_route') == 'app_blog' %}
-                    Le Carnet de Recettes
+                    Les Actus de Caro
                 {% else %}
                     L'Excellence à votre Table
                 {% endif %}
